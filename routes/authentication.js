@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const jwt = require('jwt-simple');
-const secrets = require('../secrets')
+// const secrets = require('../secrets')
 const bcrypt = require('bcryptjs');
 const db = require('../models');
 const passport = require('passport');
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 const token = (userRecord) => {
     let timestamp = new Date().getTime();
 
-    return jwt.encode({sub: userRecord.id, iat: timestamp}, secrets.secrets)
+    return jwt.encode({sub: userRecord.id, iat: timestamp}, process.env.SECRET)
 }
 
 // registration api endpoint

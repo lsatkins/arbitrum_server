@@ -6,7 +6,7 @@ const db = require('../models')
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 
-const secrets = require('../secrets')
+// const secrets = require('../secrets')
 
 
 
@@ -82,7 +82,7 @@ let localStrategy = new LocalStrategy(options, async (email, password, done) => 
 
 let jwtOptions = {
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-    secretOrKey: secrets.secrets
+    secretOrKey: process.env.SECRET
 }
 
 let jwtLogin = new JwtStrategy(jwtOptions, async (payload, done)=>{
